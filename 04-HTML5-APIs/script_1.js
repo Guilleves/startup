@@ -9,3 +9,9 @@ window.addEventListener("load", function(){
             alert('There goes your patrimony');
         })
 })
+
+function removeLastWill(){
+    localStorage.removeItem("lastwill");
+    alert("having second thoughts huh");
+    document.querySelector("p.last-will").innerHTML = "you greedy bastard";
+}
