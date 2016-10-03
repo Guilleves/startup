@@ -1,0 +1,25 @@
+Search: <input ng-model="$ctrl.query" />
+<p>
+    Sort by:
+    <select ng-model="$ctrl.order">
+        <option value="name">Name</option>
+        <option value="year">Year</option>
+    </select>
+</p>
+
+<ul>
+    <li ng-repeat="movie in $ctrl.movies | filter:$ctrl.query | orderBy:$ctrl.order ">
+        <p>
+            <a href="#/movies/{{ movie.id }}">
+            Title: {{ movie.name }}
+            </a>
+        </p>
+        <p>
+            <a href="#/movies/{{ movie.id }}">
+                <img ng-src="{{movie.imageUrl}}" width="200" height="300"/>
+            </a>
+        </p>
+        <p>Year: {{ movie.year }}</p>
+        <p>Shortie: {{ movie.snippet }}</p>
+    </li>
+</ul>

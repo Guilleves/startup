@@ -1,0 +1,72 @@
+[
+    {
+        "year": "2014",
+        "id": "budapest-hotel",
+        "imageUrl": "img/movies/grand_budapest_hotel.jpg",
+        "name": "The Grand Budapest Hotel",
+        "snippet": "The adventures of Gustave H, a legendary concierge at a famous hotel from the fictional Republic of Zubrowka between the first and second World Wars, and Zero Moustafa, the lobby boy who becomes his most trusted friend."
+    },
+    {
+        "year": "2013",
+        "id": "enemy",
+        "imageUrl": "img/movies/enemy-poster.jpg",
+        "name": "Enemy",
+        "snippet": "A man seeks out his exact look-alike after spotting him in a movie."
+    },
+    {
+        "year": "1999",
+        "id": "fight-club",
+        "imageUrl": "img/movies/fight-club.25541.jpg",
+        "name": "Fight Club",
+        "snippet": "An insomniac office worker, looking for a way to change his life, crosses paths with a devil-may-care soap maker, forming an underground fight club that evolves into something much, much more."
+    },
+    {
+        "year": "2014",
+        "id": "gone-girl",
+        "imageUrl": "img/movies/gone-girl.jpg",
+        "name": "Gone Girl",
+        "snippet": "With his wife's disappearance having become the focus of an intense media circus, a man sees the spotlight turned on him when it's suspected that he may not be innocent."
+    },
+    {
+        "year": "1997",
+        "id": "la-confidential",
+        "imageUrl": "img/movies/la-conf.jpg",
+        "name": "L.A. Confidential",
+        "snippet": "As corruption grows in 1950s LA, three policemen - one strait-laced, one brutal, and one sleazy - investigate a series of murders with their own brand of justice."
+    },
+    {
+        "year": "2006",
+        "id": "lucky-number-slevin",
+        "imageUrl": "img/movies/lns.jpg",
+        "name": "Lucky Number Slevin",
+        "snippet": "A case of mistaken identity lands Slevin into the middle of a war being plotted by two of the city's most rival crime bosses: The Rabbi and The Boss. Slevin is under constant surveillance by relentless Detective Brikowski as well as the infamous assassin Goodkat and finds himself having to hatch his own ingenious plot to get them before they get him."
+    },
+    {
+        "year": "2013",
+        "id": "prisoners",
+        "imageUrl": "img/movies/prisoners.jpg",
+        "name": "Prisoners",
+        "snippet": "When Keller Dover's daughter and her friend go missing, he takes matters into his own hands as the police pursue multiple leads and the pressure mounts. But just how far will this desperate father go to protect his family?"
+    },
+    {
+        "year": "1994",
+        "id": "shawshank-redemption",
+        "imageUrl": "img/movies/ssr.jpg",
+        "name": "The Shawshank Redemption",
+        "snippet": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
+    },
+    {
+        "year": "2013",
+        "id": "snowpiercer",
+        "imageUrl": "img/movies/snowpiercer.jpg",
+        "name": "Snowpiercer",
+        "snippet": "Set in a future where a failed climate-change experiment kills all life on the planet except for a lucky few who boarded the Snowpiercer, a train that travels around the globe, where a class system emerges."
+    },
+    {
+        "year": "2015",
+        "id": "southpaw",
+        "imageUrl": "img/movies/southpaw.jpg",
+        "name": "Southpaw",
+        "snippet": "Boxer Billy Hope turns to trainer Tick Wills to help him get his life back on track after losing his wife in a tragic accident and his daughter to child protection services."
+    }
+]
