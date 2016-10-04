@@ -1,9 +1,5 @@
-let videoclub = angular.module('videoclub', []);
-
-videoclub.component('movieList', {
-    bindings: {
-
-    },
+angular.module('movieList')
+.component('movieList', {
     templateUrl: "./movie-list/movie-list.template.html",
     controller: ['$http',
         function MovieListController($http) {
