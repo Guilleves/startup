@@ -1,8 +1,15 @@
-<h1>{{ movie.title }}</h1>
-<img ng-src="{{movie.imageUrl}}" width="600" height="800"/>
-{{ movie.certificate }} | {{ movie.duration }} | {{ movie.release_date_argentina }} | {{ movie.genres }}
-<p><i class="fa fa-star" aria-hidden="true"></i>Rating: {{ movie.score }}</p>
+<h1>{{ $ctrl.movie.name }}</h1>
+<img ng-src="{{ $ctrl.movie.imageUrl }}" width="400" height="600"/><br>
+{{ $ctrl.movie.certificate }} | {{ $ctrl.movie.duration }} | {{ $ctrl.movie.release_date_argentina }} | {{ $ctrl.movie.genres }}
+<p>Rating: {{ $ctrl.movie.score }}</p>
 <h3>About</h3>
-<p>{{ movie.director }}</p>
-<p>{{ movie.storyline }}</p>
-<p>{{ movie.stars }}</p>
+<p>Director: {{ $ctrl.movie.director }}</p>
+<p>{{ $ctrl.movie.storyline }}</p>
+<p>Cast: {{ $ctrl.movie.stars }}</p>
+
+<!-- Cast
+<ul>
+    <li ng-repeat="actor in $ctrl.movie.stars">
+            {{ actor }}
+    </li>
+</ul> -->
