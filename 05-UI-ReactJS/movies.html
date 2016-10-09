@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>React Tutorial</title>
+    <!-- Not present in the tutorial. Just for basic styling. -->
+    <link rel="stylesheet" href="base.css" />
+    <script src="https://unpkg.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <script src="https://unpkg.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/remarkable@1.7.1/dist/remarkable.min.js"></script>
+  </head>
+  <body>
+    <div id="content">
+        <h1>Videoclub</h1>
+    </div>
+    <div id="carlos">
+        heuheuhee si aparece esto solo es que anda mal<br>
+    </div>
+    <script type="text/babel">
+    function init() {
+      let ls = window.localStorage;
+      if (ls.length !== 0){
+        alert("localStorage is not empty, cleaning and seeding again");
+        ls.clear();
+        seedStorage(moviesSeed, ls);
+      }
+    };
+
+    let seedStorage = function (seedArray, ls){
+        seedArray.forEach((movie) => {
+          let id = movie.id;
+          ls.setItem(id, JSON.stringify(movie));
+        })
+    };
+
+    let moviesSeed = [
+        {
+            "id": "budapest-hotel",
+            "name": "The Grand Budapest Hotel",
+            "year": "2014",
+            "duration": "1h 39min",
+            "certificate": "PG 13",
+            "director": "Wes Anderson",
+            "genres": "adventure, comedy, crime",
+            "stars": "Edward Norton, Ralph Fiennes, Adrien Brody, Willem Dafoe, Jude Law, Saoirse Ronan",
+            "storyline": "In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.",
+            "language": "English",
+            "release_date_argentina": "20 March 2014",
+            "score": "8.1",
+            "imageUrl": "img/movies/grand_budapest_hotel.jpg",
+            "snippet": "The adventures of Gustave H, a legendary concierge at a famous hotel from the fictional Republic of Zubrowka between the first and second World Wars, and Zero Moustafa, the lobby boy who becomes his most trusted friend."
+        },
+        {
+            "id": "enemy",
+            "name": "Enemy",
+            "year": "2013",
+            "duration": "1h 31min ",
+            "certificate": "16",
+            "director": "Denis Villeneuve",
+            "genres": "thriller, mistery",
+            "stars": "Jake Gyllenhaal, Melanie Laurent",
+            "storyline": "A mild-mannered college professor (Jake Gyllenhaal) discovers a look-alike actor and delves into the other man's private affairs.",
+            "language": "English",
+            "release_date_argentina": " 12 June 2014",
+            "score": "6.9",
+            "imageUrl": "./img/movies/enemy-poster.jpg",
+            "snippet": "A man seeks out his exact look-alike after spotting him in a movie."
+        },
+        {
+            "id": "fight-club",
+            "name": "Fight Club",
+            "year": "1999",
+            "duration": "2h 19m",
+            "certificate": "PG 13",
+            "director": "David Fincher",
+            "genres": "drama, action, thriller",
+            "stars": "Edward Norton, Brad Pitt, Helena Bonham Carter",
+            "storyline": "A depressed man (Edward Norton) suffering from insomnia meets a strange soap salesman named Tyler Durden (Brad Pitt) and soon finds himself living in his squalid house after his perfect apartment is destroyed. The two bored men form an underground club with strict rules and fight other men who are fed up with their mundane lives. Their perfect partnership frays when Marla (Helena Bonham Carter), a fellow support group crasher, attracts Tyler's attention.",
+            "language": "English",
+            "release_date_argentina": "4 November 1999",
+            "score": "8.7",
+            "imageUrl": "./img/movies/fight-club.25541.jpg",
+            "snippet": "An insomniac office worker, looking for a way to change his life, crosses paths with a devil-may-care soap maker, forming an underground fight club that evolves into something much, much more."
+        },
+        {
+            "id": "gone-girl",
+            "name": "Gone Girl",
+            "year": "2014",
+            "duration": "2h 29min ",
+            "certificate": "16",
+            "director": "David Fincher",
+            "genres": "crime, mistery, drama",
+            "stars": "Ben Affleck, Rosamund Pike, Neil Patrick Harris",
+            "storyline": "In Carthage, Mo., former New York-based writer Nick Dunne (Ben Affleck) and his glamorous wife Amy (Rosamund Pike) present a portrait of a blissful marriage to the public. However, when Amy goes missing on the couple's fifth wedding anniversary, Nick becomes the prime suspect in her disappearance. The resulting police pressure and media frenzy cause the Dunnes' image of a happy union to crumble, leading to tantalizing questions about who Nick and Amy truly are.",
+            "language": "English",
+            "release_date_argentina": "2 October 2014",
+            "score": "8.1",
+            "imageUrl": "./img/movies/gone-girl.jpg",
+            "snippet": "With his wife's disappearance having become the focus of an intense media circus, a man sees the spotlight turned on him when it's suspected that he may not be innocent."
+        },
+        {
+            "id": "la-confidential",
+            "name": "L.A. Confidential",
+            "year": "1997",
+            "duration": "2h 18min ",
+            "certificate": "16",
+            "director": "Curtis Hanson",
+            "genres": "crime, drama, mistery",
+            "stars": "Kevin Spacey, Russell Crowe, Danny DeVito, Kim Basinger",
+            "storyline": "Three policemen, each with his own motives and obsessions, tackle the corruption surrounding an unsolved murder at a downtown Los Angeles coffee shop in the early 1950s. Detective Lieutenant Exley (Guy Pearce), the son of a murdered detective, is out to avenge his father's killing. The ex-partner of Officer White (Russell Crowe), implicated in a scandal rooted out by Exley, was one of the victims. Sergeant Vincennes (Kevin Spacey) feeds classified information to a tabloid magnate (Danny DeVito).",
+            "language": "English",
+            "release_date_argentina": "6 November 1997",
+            "score": "8.3",
+            "imageUrl": "./img/movies/la-conf.jpg",
+            "snippet": "As corruption grows in 1950s LA, three policemen - one strait-laced, one brutal, and one sleazy - investigate a series of murders with their own brand of justice."
+        },
+        {
+            "id": "lucky-number-slevin",
+            "name": "Lucky Numer Slevin",
+            "year": "2006",
+            "duration": "1h 50min ",
+            "certificate": "16",
+            "director": "Paul McGuigan",
+            "genres": "crime, drama, mistery",
+            "stars": "Josh Hartnett, Morgan Freeman, Bruce Willis",
+            "storyline": "A case of mistaken identity puts a man named Slevin (Josh Hartnett) in the middle of a war between two rival New York crime lords: The Rabbi (Ben Kingsley) and the Boss (Morgan Freeman). While under the watchful eyes of Detective Brikowski (Stanley Tucci) and well-known assassin Goodkat (Bruce Willis), Slevin must quickly devise a plan to save his skin before his luck runs out.",
+            "language": "English",
+            "release_date_argentina": "20 April 2006",
+            "score": "9.3",
+            "imageUrl": "./img/movies/lns.jpg",
+            "snippet": "A case of mistaken identity lands Slevin into the middle of a war being plotted by two of the city's most rival crime bosses: The Rabbi and The Boss. Slevin is under constant surveillance by relentless Detective Brikowski as well as the infamous assassin Goodkat and finds himself having to hatch his own ingenious plot to get them before they get him."
+        },
+        {
+            "id": "prisoners",
+             "name": "Prisoners",
+             "year": "2013",
+             "duration": "2h 33min",
+             "certificate": "16",
+             "director": "Denis Villeneuve",
+             "genres": "drama, crime, mistery",
+             "stars": "Hugh Jackman, Jake Gyllenhaal, Viola Davis, Terrence Howard",
+             "storyline": "Keller Dover (Hugh Jackman) faces a parent's worst nightmare when his 6-year-old daughter, Anna, and her friend go missing. The only lead is an old motorhome that had been parked on their street. The head of the investigation, Detective Loki (Jake Gyllenhaal), arrests the driver (Paul Dano), but a lack of evidence forces Loki to release his only suspect. Dover, knowing that his daughter's life is at stake, decides that he has no choice but to take matters into his own hands.",
+             "language": "English",
+             "release_date_argentina": "28 November 2013",
+             "score": "8.1",
+             "imageUrl": "./img/movies/prisoners.jpg",
+            "snippet": "When Keller Dover's daughter and her friend go missing, he takes matters into his own hands as the police pursue multiple leads and the pressure mounts. But just how far will this desperate father go to protect his family?"
+        },
+        {
+            "id": "shawshank-redemption",
+            "name": "The Shawshank Redemption",
+            "year": "1994",
+            "duration": "2h 22min ",
+            "certificate": "16",
+            "director": "Frank Darabont",
+            "genres": "crime, drama",
+            "stars": "Tim Robbins, Morgan Freeman, Bob Gunton",
+            "storyline": "Andy Dufresne (Tim Robbins) is sentenced to two consecutive life terms in prison for the murders of his wife and her lover and is sentenced to a tough prison. However, only Andy knows he didn't commit the crimes. While there, he forms a friendship with Red (Morgan Freeman), experiences brutality of prison life, adapts, helps the warden, etc., all in 19 years.",
+            "language": "English",
+            "release_date_argentina": "23 March 1995",
+            "score": "9.3",
+            "imageUrl": "./img/movies/ssr.jpg",
+            "snippet": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
+        },
+        {
+            "id": "snowpiercer",
+            "name": "Snowpiercer",
+            "year": "2013",
+            "duration": "2h 6min ",
+            "certificate": "R",
+            "director": "Bong Joon Ho",
+            "genres": "action, drama, sci-fi",
+            "stars": "Chris Evans, Jamie Bell, Tilda Swinton",
+            "storyline": "A post-apocalyptic ice age forces humanity's last survivors aboard a globe-spanning supertrain. One man (Chris Evans) will risk everything to lead a revolt for control of the engine and the future of the world.",
+            "language": "English",
+            "release_date_argentina": "1 August 2013",
+            "score": "7.0",
+            "imageUrl": "./img/movies/snowpiercer.jpg",
+            "snippet": "Set in a future where a failed climate-change experiment kills all life on the planet except for a lucky few who boarded the Snowpiercer, a train that travels around the globe, where a class system emerges."
+        },
+        {
+            "id": "southpaw",
+            "name": "Southpaw",
+            "year": "2015",
+            "duration": "2h 4min ",
+            "certificate": "13",
+            "director": "Antoine Fuqua",
+            "genres":  "sport, drama",
+            "stars": "Jake Gyllenhaal, Rachel McAdams, Oona Laurence",
+            "storyline": "Billy 'The Great' Hope (Jake Gyllenhaal), the reigning junior middleweight boxing champion, has an impressive career, a loving wife and daughter, and a lavish lifestyle. However, when tragedy strikes, Billy hits rock bottom, losing his family, his house and his manager. He soon finds an unlikely savior in Tick Willis (Forest Whitaker), a former fighter who trains the city's toughest amateur boxers. With his future on the line, Hope fights to reclaim the trust of those he loves the most.",
+            "language": "English",
+            "release_date_argentina": "20 August 2015",
+            "score": "7.4",
+            "imageUrl": "./img/movies/southpaw.jpg",
+            "snippet": "Boxer Billy Hope turns to trainer Tick Wills to help him get his life back on track after losing his wife in a tragic accident and his daughter to child protection services."
+        }
+    ];
+        init();
+        let movies = [];
+        for(let i = 0; i < localStorage.length; i++){
+            let movie = localStorage.getItem(localStorage.key(i));
+            movies.push(JSON.parse(movie));
+        };
+
+        let MovieList = React.createClass({
+            // getInitialState: function(){
+            //     return({ movieRows: []});
+            // },
+            render: function(){
+                let movieRows = [];
+                this.props.movies.forEach((movie, index) => {
+                    movieRows.push(
+                        <div>
+                        <MovieRow key={ movie.id } index={ index } name={ movie.name } year={ movie.year } snippet={ movie.snippet } imgUrl={ movie.imgUrl }/>
+                        </div>
+                    );
+                });
+                return(
+                    <div>{ movieRows }</div>
+                )
+            }
+        });
+
+        let MovieRow = React.createClass({
+            render: function(){
+                return (
+                    <div className="commentContainer">
+                        <a href={ this.props.id } className="commentText">Name: { this.props.name }</a>
+                        <br/>
+                        <img src={ this.props.imgUrl } height="300" width="200"/>
+                        <div>Year: { this.props.year }</div>
+                        <div>{ this.props.snippet }</div>
+                    </div>
+                );
+            }
+        });
+
+        let MovieDetails = React.createClass({
+            render: function() {
+                return(
+                    <div>
+                    <h3>{ this.props.name }</h3>
+                    <img src={this.props.imgUrl} height="300" width="200"/>
+                    <span>Year: {this.props.year }</span>
+                    <span>duration: {this.props.duration }</span>
+                    <span>Ages: {this.props.certificate }</span>
+                    <span>Directed by: {this.props.director }</span>
+                    <span>Genre: {this.props.genres }</span>
+                    <span>Starring: {this.props.stars }</span>
+                    <p>Storyline: {this.props.storyline }</p>
+                    <span>Language: {this.props.language }</span>
+                    <span>Release date: {this.props.release_date_argentina }</span>
+                    <span>Score: {this.props.score }</span>
+                    </div>
+                )
+            }
+        })
+
+
+        ReactDOM.render(
+            <div>
+            <MovieList movies={ movies }/>
+            </div>,
+          document.getElementById('content')
+        );
+    </script>
+  </body>
+</html>
