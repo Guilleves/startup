@@ -66,7 +66,7 @@
             "language": "English",
             "release_date_argentina": " 12 June 2014",
             "score": "6.9",
-            "imageUrl": "./img/movies/enemy-poster.jpg",
+            "imageUrl": "img/movies/enemy-poster.jpg",
             "snippet": "A man seeks out his exact look-alike after spotting him in a movie."
         },
         {
@@ -82,7 +82,7 @@
             "language": "English",
             "release_date_argentina": "4 November 1999",
             "score": "8.7",
-            "imageUrl": "./img/movies/fight-club.25541.jpg",
+            "imageUrl": "img/movies/fight-club.25541.jpg",
             "snippet": "An insomniac office worker, looking for a way to change his life, crosses paths with a devil-may-care soap maker, forming an underground fight club that evolves into something much, much more."
         },
         {
@@ -98,7 +98,7 @@
             "language": "English",
             "release_date_argentina": "2 October 2014",
             "score": "8.1",
-            "imageUrl": "./img/movies/gone-girl.jpg",
+            "imageUrl": "img/movies/gone-girl.jpg",
             "snippet": "With his wife's disappearance having become the focus of an intense media circus, a man sees the spotlight turned on him when it's suspected that he may not be innocent."
         },
         {
@@ -114,7 +114,7 @@
             "language": "English",
             "release_date_argentina": "6 November 1997",
             "score": "8.3",
-            "imageUrl": "./img/movies/la-conf.jpg",
+            "imageUrl": "img/movies/la-conf.jpg",
             "snippet": "As corruption grows in 1950s LA, three policemen - one strait-laced, one brutal, and one sleazy - investigate a series of murders with their own brand of justice."
         },
         {
@@ -130,7 +130,7 @@
             "language": "English",
             "release_date_argentina": "20 April 2006",
             "score": "9.3",
-            "imageUrl": "./img/movies/lns.jpg",
+            "imageUrl": "img/movies/lns.jpg",
             "snippet": "A case of mistaken identity lands Slevin into the middle of a war being plotted by two of the city's most rival crime bosses: The Rabbi and The Boss. Slevin is under constant surveillance by relentless Detective Brikowski as well as the infamous assassin Goodkat and finds himself having to hatch his own ingenious plot to get them before they get him."
         },
         {
@@ -146,7 +146,7 @@
              "language": "English",
              "release_date_argentina": "28 November 2013",
              "score": "8.1",
-             "imageUrl": "./img/movies/prisoners.jpg",
+             "imageUrl": "img/movies/prisoners.jpg",
             "snippet": "When Keller Dover's daughter and her friend go missing, he takes matters into his own hands as the police pursue multiple leads and the pressure mounts. But just how far will this desperate father go to protect his family?"
         },
         {
@@ -162,7 +162,7 @@
             "language": "English",
             "release_date_argentina": "23 March 1995",
             "score": "9.3",
-            "imageUrl": "./img/movies/ssr.jpg",
+            "imageUrl": "img/movies/ssr.jpg",
             "snippet": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
         },
         {
@@ -178,7 +178,7 @@
             "language": "English",
             "release_date_argentina": "1 August 2013",
             "score": "7.0",
-            "imageUrl": "./img/movies/snowpiercer.jpg",
+            "imageUrl": "img/movies/snowpiercer.jpg",
             "snippet": "Set in a future where a failed climate-change experiment kills all life on the planet except for a lucky few who boarded the Snowpiercer, a train that travels around the globe, where a class system emerges."
         },
         {
@@ -194,7 +194,7 @@
             "language": "English",
             "release_date_argentina": "20 August 2015",
             "score": "7.4",
-            "imageUrl": "./img/movies/southpaw.jpg",
+            "imageUrl": "img/movies/southpaw.jpg",
             "snippet": "Boxer Billy Hope turns to trainer Tick Wills to help him get his life back on track after losing his wife in a tragic accident and his daughter to child protection services."
         }
     ];
@@ -206,21 +206,56 @@
         };
 
         let MovieList = React.createClass({
-            // getInitialState: function(){
-            //     return({ movieRows: []});
-            // },
-            render: function(){
+            getInitialState: function(){
+                return({ movies: this.props.movies,
+                         view: "list",
+                         currentMovie: ""});
+            },
+            deleteMovie: function() {
+                // negrada total
+                // console.log(this.state.movies);
+                localStorage.removeItem(this.state.movies.id);
+                this.setState( {movies: (this.state.movies.splice(this.props.index, 1)) } );
+            },
+            handleEnterDetailedView: function(){
+                this.setState({view: "detail",
+                                // how can i use the id property of the clicked movie?
+                               currentMovie: this.state.movies.id});
+            },
+            handleEnterEditView: function(){
+                this.setState({view: "edit",
+                                // same as detailedView handler
+                               currentMovie: this.props.id});
+            },
+            renderDetails: function(){
+                let movieId = this.state.currentMovie;
+                console.log(this.state.currentMovie);
+                let detailedMovie = this.state.movies.filter((movie) => {
+                    return movie.id === movieId;
+                });
+                console.log(detailedMovie);
+                return(<MovieDetails {...detailedMovie}/>);
+            },
+            renderList: function(){
                 let movieRows = [];
                 this.props.movies.forEach((movie, index) => {
                     movieRows.push(
                         <div>
-                        <MovieRow key={ movie.id } index={ index } name={ movie.name } year={ movie.year } snippet={ movie.snippet } imgUrl={ movie.imgUrl }/>
+                        <MovieRow key={ movie.id } id={movie.id} index={ index } name={ movie.name } imgUrl={ movie.imgUrl } year={ movie.year } snippet={ movie.snippet } />
+                        <button className="btn" onClick={this.handleEnterDetailedView} >View</button>
+                        <button className="btn buttonEdit" onClick={this.handleEnterDetailedView} >Edit</button>
+                        <button className="btn buttonDelete" onClick={this.deleteMovie} >Delete</button>
                         </div>
                     );
                 });
                 return(
                     <div>{ movieRows }</div>
                 )
+            },
+            render: function() {
+                if (this.state.view === "detail")
+                    return this.renderDetails(this.props.index);
+                else return this.renderList();
             }
         });
 
@@ -230,7 +265,7 @@
                     <div className="commentContainer">
                         <a href={ this.props.id } className="commentText">Name: { this.props.name }</a>
                         <br/>
-                        <img src={ this.props.imgUrl } height="300" width="200"/>
+                        <img src={ "http://localhost:8080/"+this.props.imgUrl } height="300" width="200"/>
                         <div>Year: { this.props.year }</div>
                         <div>{ this.props.snippet }</div>
                     </div>
@@ -239,6 +274,12 @@
         });
 
         let MovieDetails = React.createClass({
+            // getInitialState: function(){
+            //     return({mode: view})
+            // },
+            editMovie: function() {
+
+            },
             render: function() {
                 return(
                     <div>
